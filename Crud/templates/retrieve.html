@@ -24,8 +24,8 @@
         <input type="submit" value="Send">
     </form> -->
 
-    <h1>Таблица</h1>
-    <form method="POST" action="create/">
+    <h1>Редактирование</h1>
+    <form method="POST" action="/update/{{pk}}/">
         {% csrf_token %}
         <div style="margin: 12px;">
             {% for field in form %}
@@ -38,28 +38,8 @@
                 </div>
             {% endfor %}
         </div>
-        <input type="submit" value="Send">
+        <input type="submit" value="Сохранить">
     </form>
-
-    <h1>Списки</h1>
-    {% if persons %}
-        <table>
-            <tr>
-                <th>Имя</th>
-                <th>Возраст</th>
-            </tr>
-            {% for person in persons %}
-                <tr>
-                    <th>{{ person.name }}</th>
-                    <th>{{ person.age }}</th>
-                    <th><a href="/update/{{person.pk}}">Изменить</a></th>
-                    <th><a href="/delete/{{person.pk}}">Удалить</a></th>
-                </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <h2>Пользователи отсутствуют</h2>
-    {% endif %}
 
     <!-- <h1>DIV</h1>
     <form method="POST">
