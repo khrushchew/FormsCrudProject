@@ -1,0 +1,12 @@
+.body_div {
+    display: flex;
+}
+
+div {
+    flex: 50%;
+}
+
+li {
+    color: red;
+}
+

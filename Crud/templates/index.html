@@ -1,46 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Формы</title>
 </head>
 <body>
-    <!-- <h1>P</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_p }}
-        </table>
-        <input type="submit" value="Send">
-    </form> -->
+    <div class="body_div">
+    {% block body %}
 
-    <!-- <h1>UL</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_ul }}
-        </table>
-        <input type="submit" value="Send">
-    </form> -->
-
-    <h1>Таблица</h1>
-    <form method="POST" action="create/">
+    <div>
+    <h1>Add element</h1>
+    <form method="POST" action="{% url 'index' %}"", novalidate>
         {% csrf_token %}
         <div style="margin: 12px;">
             {% for field in form %}
-                <h2>{{ field.label_tag }}</h2>
+                <h2>{{ field.label }}</h2>
                 <div>
                     {{ field }}
                 </div>
-                <div>
-                    {{ field.errors }}
-                </div>
+                {% if field.errors %}
+                    <ul class="errorlist">
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                {% endif %}
             {% endfor %}
         </div>
         <input type="submit" value="Send">
     </form>
+    </div>
 
+    <div>
     <h1>Списки</h1>
     {% if persons %}
         <table>
@@ -60,14 +53,9 @@
     {% else %}
         <h2>Пользователи отсутствуют</h2>
     {% endif %}
+    </div>
 
-    <!-- <h1>DIV</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_div }}
-        </table>
-        <input type="submit" value="Send">
-    </form> -->
+    {% endblock body %}
+    </div>
 </body>
 </html>
