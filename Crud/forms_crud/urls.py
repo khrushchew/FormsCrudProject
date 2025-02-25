@@ -6,6 +6,6 @@ from forms_crud.views.delete_view import DeleteView
 
 urlpatterns = [
     path("", IndexView.as_view(), name='index'),
-    path("update/<int:pk>/", UpdateView.as_view()),
+    path("update/<int:pk>/", UpdateView.as_view(), name='update'),
     path("delete/<int:pk>/", DeleteView.as_view())
 ]

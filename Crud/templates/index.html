@@ -10,9 +10,11 @@
     <div class="body_div">
     {% block body %}
 
-    <div>
-    <h1>Add element</h1>
-    <form method="POST" action="{% url 'index' %}"", novalidate>
+    <div style="flex: 30%;">
+    {% block form_title %}
+        <h1>Add element</h1>
+    {% endblock form_title %}
+    <form method="POST" {% block form_action %} action="{% url 'index' %}" {% endblock form_action %}, novalidate>
         {% csrf_token %}
         <div style="margin: 12px;">
             {% for field in form %}
@@ -33,7 +35,7 @@
     </form>
     </div>
 
-    <div>
+    <div style="flex: 70%;">
     <h1>Списки</h1>
     {% if persons %}
         <table>
